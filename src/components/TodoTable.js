@@ -5,8 +5,8 @@ function TodoTable(props) {
         <div>
             <table><tbody>
                 <tr><th>Date</th><th>Description</th></tr>
-                {props.todos.map((item, index) => <tr key={index}>
-                    <td>{item.date}</td><td>{item.desc}</td></tr>)}
+                {props.todos.map((todoLine, index) => <tr key={index}>
+                    <td>{todoLine.date}</td><td>{todoLine.desc}</td><button onClick={() => props.deleteTodo(index)}>Poista</button></tr>)}
             </tbody></table>
         </div>
     )

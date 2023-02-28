@@ -8,7 +8,7 @@ function TodoList() {
     const [todos, setTodos] = useState([]);
 
     const inputChanged = (event) => {
-        setTodoLine({...todoLine, [event.target.name]: event.target.value });
+        setTodoLine({ ...todoLine, [event.target.name]: event.target.value });
         console.log(todos);
     }
     const addTodo = () => {
@@ -16,12 +16,18 @@ function TodoList() {
         console.log(todos);
     }
 
+    const deleteTodo = (index) => {
+        setTodos(todos.filter((todo, i) => i !== index));
+    };
+
     return (
-        <div>  
-            Tehtävä: <input type="text" name="date" onChange={inputChanged} value={todoLine.date} />
-            Päivämäärä: <input type="text" name="desc" onChange={inputChanged} value={todoLine.desc} />
-            <button onClick={addTodo}>Lisää</button>
-            <TodoTable todos={todos} />
+        <div>
+            <div>Lisää tehtävä:</div>
+            <div>
+                Tehtävä: <input type="text" name="date" onChange={inputChanged} value={todoLine.date} />
+                Päivämäärä: <input type="text" name="desc" onChange={inputChanged} value={todoLine.desc} />
+                <button onClick={addTodo}>Lisää</button></div>
+            <TodoTable todos={todos} deleteTodo={deleteTodo} />
         </div>
     );
 }
