@@ -1,12 +1,12 @@
 import React from "react";
 
 function TodoTable(props) {
+    console.log(props)
     return (
         <div>
             <table><tbody>
-                <tr><th>Date</th><th>Description</th></tr>
                 {props.todos.map((todoLine, index) => <tr key={index}>
-                    <td>{todoLine.date}</td><td>{todoLine.desc}</td><button onClick={() => props.deleteTodo(index)}>Poista</button></tr>)}
+                    <td>{todoLine.date}</td><td>{todoLine.desc}</td><td>{todoLine.priority}</td></tr>)}
             </tbody></table>
         </div>
     )
