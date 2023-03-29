@@ -19,7 +19,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 
 function TodoList() {
-    const [value, setValue] = useState('home');
+    const [value, setValue] = useState('todo');
 
     const handleChange = (event, value) => {
         setValue(value);
@@ -71,6 +71,10 @@ function TodoList() {
         }
     };
 
+    const deleteAll = () => {
+        setTodos([]);
+    };
+
     return (
         <div className="App">
             <Tabs value={value} onChange={handleChange}>
@@ -87,7 +91,8 @@ function TodoList() {
                         <TextField name="desc" variant="standard" label="Tehtävä" onChange={inputChanged} value={todoLine.desc} />
                         <TextField name="priority" variant="standard" label="Tärkeys" onChange={inputChanged} value={todoLine.priority} />
                         <Button onClick={addTodo} variant="contained">Lisää</Button>
-                        <Button onClick={deleteTodo} variant="outlined" startIcon={<DeleteIcon />}>Poista</Button>
+                        <Button onClick={deleteTodo} variant="outlined">Poista</Button>
+                        <Button onClick={deleteAll} variant="outlined" color="error" startIcon={<DeleteIcon />}>Tyhjennä</Button>
                     </Stack>
                 </div>
                 <div className="ag-theme-material"
@@ -99,8 +104,6 @@ function TodoList() {
                         onGridReady={params => gridRef.current = params.api} />
                 </div>
             </div>}
-
-
         </div>
     );
 }
